@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .success{
+            background-color: green;
+            border: 1px solid black;
+            padding: 20px;
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages: %}
+            {% for message in messages: %}
+                <p class="success">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <p><u>Email Addresses Entered</u></p>
+
+    <table>
+        {% for email in emailList: %}
+            <tr>
+                <td>{{ email['email'] }}</td>
+                <td>{{ email['created_at'] }}</td>
+                <td> <a href="/delete/{{ email['id'] }}">DELETE</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
